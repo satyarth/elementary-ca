@@ -3,7 +3,7 @@ from PIL import Image
 
 width = 512
 height = 512
-rulenumber = 126
+rulenumber = 106
 
 true_pixel = (255, 255, 255)
 false_pixel = (0, 0, 0)
@@ -20,17 +20,17 @@ def generate_rule(rulenumber):
 def generate_ca(rule):
 	ca = []
 	ca.append([])
-	ca[0].append(False)
-	for x in range(width-2):
+	ca[0].append(bool(random.getrandbits(1)))
+	for x in range(1,width-1):
 		ca[0].append(bool(random.getrandbits(1)))
-	ca[0].append(False)
+	ca[0].append(bool(random.getrandbits(1)))
 
 	for y in range(1,height):
 		ca.append([])
-		ca[y].append(False)
+		ca[y].append(bool(random.getrandbits(1)))
 		for x in range(1, width-1):
 			ca[y].append(rule[(ca[y-1][x-1], ca[y-1][x], ca[y-1][x+1])])
-		ca[y].append(False)
+		ca[y].append(bool(random.getrandbits(1)))
 	return ca
 
 rule = generate_rule(rulenumber)
