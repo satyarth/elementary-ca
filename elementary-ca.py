@@ -1,15 +1,23 @@
 import random
 from PIL import Image
+import argparse
 
-width = 512
-height = 512
-rulenumber = 106
+p = argparse.ArgumentParser(description="Generate an elementary cellular automaton")
+p.add_argument("-x", "--width", help="Width",default=322)
+p.add_argument("-y", "--height", help="Height",default=322)
+p.add_argument("-r", "--rulenumber", help="Rule number",default=146)
+p.add_argument("-o", "--outputfile", help="Output file",default="out.png")
+args = p.parse_args()
+
+width = int(args.width)
+height = int(args.height)
+rulenumber = int(args.rulenumber)
 
 # Define colors of the output image
 true_pixel = (255, 255, 255)
 false_pixel = (0, 0, 0)
 
-# Generates a dictionary that tells you what your state should be based on the rule number and the states of the cell to your top-left, top, and top-right
+# Generates a dictionary that tells you what your state should be based on the rule number and the states of the adjacent cells in the previous generation
 def generate_rule(rulenumber):
 	rule = {}
 	for left in [False, True]:
@@ -48,5 +56,5 @@ for y in range(height):
 		new.putpixel((x, y), true_pixel if ca[y][x] else false_pixel)
 
 print("Saving image...")
-new.save("out.png")
+new.save(args.outputfile)
 print "Done!"
