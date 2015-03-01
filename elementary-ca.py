@@ -7,11 +7,13 @@ p.add_argument("-x", "--width", help="Width",default=322)
 p.add_argument("-y", "--height", help="Height",default=322)
 p.add_argument("-r", "--rulenumber", help="Rule number",default=146)
 p.add_argument("-o", "--outputfile", help="Output file",default="out.png")
+p.add_argument("-s", "--scalefactor", help="Scale the output image by an interger amount",default=1)
 args = p.parse_args()
 
 width = int(args.width)
 height = int(args.height)
 rulenumber = int(args.rulenumber)
+scalefactor = int(args.scalefactor)
 
 # Define colors of the output image
 true_pixel = (255, 255, 255)
@@ -48,12 +50,12 @@ def generate_ca(rule):
 rule = generate_rule(rulenumber)
 ca = generate_ca(rule)
 
-new = Image.new('RGB', [width, height])
+new = Image.new('RGB', [width*scalefactor, height*scalefactor])
 
 print("Placing pixels...")
-for y in range(height):
-	for x in range(width):
-		new.putpixel((x, y), true_pixel if ca[y][x] else false_pixel)
+for y in range(height*scalefactor):
+	for x in range(width*scalefactor):
+		new.putpixel((x, y), true_pixel if ca[y/scalefactor][x/scalefactor] else false_pixel)
 
 print("Saving image...")
 new.save(args.outputfile)

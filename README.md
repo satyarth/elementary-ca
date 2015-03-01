@@ -10,3 +10,4 @@ The first row along with the left and right edges are seeded randomly.
 * `-y` : Sets the height of the output. (default: 322px)
 * `-r` : Sets the rule number. See [Wolfram MathWorld](http://mathworld.wolfram.com/ElementaryCellularAutomaton.html) for details.
 * `-o` : Sets the name of the output file. "out.png" by default.
+* `-s` : Scales the output by an integer factor. 1 by default.
