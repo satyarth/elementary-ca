@@ -4,6 +4,9 @@ Python script to generate images of [elementary cellular automata](http://en.wik
 
 The first row along with the left and right edges are seeded randomly.
 
+Example:
+![Example](example.png)
+
 ## Command line arguments
 
 * `-x` : Sets the width of the output. (default: 322px)
