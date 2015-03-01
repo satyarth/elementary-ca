@@ -5,9 +5,11 @@ width = 512
 height = 512
 rulenumber = 106
 
+# Define colors of the output image
 true_pixel = (255, 255, 255)
 false_pixel = (0, 0, 0)
 
+# Generates a dictionary that tells you what your state should be based on the rule number and the states of the cell to your top-left, top, and top-right
 def generate_rule(rulenumber):
 	rule = {}
 	for left in [False, True]:
@@ -17,14 +19,16 @@ def generate_rule(rulenumber):
 				rulenumber /= 2
 	return rule
 
+# Generates a 2d representation of the state of the automaton at each generation
 def generate_ca(rule):
 	ca = []
+	# Initialize the first row of ca randomly
 	ca.append([])
-	ca[0].append(bool(random.getrandbits(1)))
-	for x in range(1,width-1):
+	for x in range(width):
 		ca[0].append(bool(random.getrandbits(1)))
-	ca[0].append(bool(random.getrandbits(1)))
 
+	# Generate the succeeding generation
+	# Cells at the eges are initialized randomly
 	for y in range(1,height):
 		ca.append([])
 		ca[y].append(bool(random.getrandbits(1)))
