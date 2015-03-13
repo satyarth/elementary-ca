@@ -50,11 +50,11 @@ def generate_ca(rule):
 rule = generate_rule(rulenumber)
 ca = generate_ca(rule)
 
-new = Image.new('RGB', [width*scalefactor, height*scalefactor])
+new = Image.new('RGB', [width, height])
 
 print("Placing pixels...")
-for y in range(height*scalefactor):
-	for x in range(width*scalefactor):
+for y in range(height):
+	for x in range(width):
 		new.putpixel((x, y), true_pixel if ca[y/scalefactor][x/scalefactor] else false_pixel)
 
 print("Saving image...")
