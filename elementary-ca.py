@@ -1,5 +1,8 @@
+try:
+	import Image, ImageFilter
+except ImportError:
+	from PIL import Image, ImageFilter
 import random
-from PIL import Image
 import argparse
 
 p = argparse.ArgumentParser(description="Generate an elementary cellular automaton")
