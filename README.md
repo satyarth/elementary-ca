@@ -6,6 +6,8 @@ The first row along with the left and right edges are seeded randomly.
 
 Example:
 
+`python3 elementary-ca.py [options]`
+
 ![Example](example.png)
 
 ## Command line arguments
