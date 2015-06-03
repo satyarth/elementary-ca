@@ -3,11 +3,11 @@ from PIL import Image
 import argparse
 
 p = argparse.ArgumentParser(description="Generate an elementary cellular automaton")
-p.add_argument("-x", "--width", help="Width",default=322)
-p.add_argument("-y", "--height", help="Height",default=322)
-p.add_argument("-r", "--rulenumber", help="Rule number",default=146)
-p.add_argument("-o", "--outputfile", help="Output file",default="out.png")
-p.add_argument("-s", "--scalefactor", help="Scale the output image by an interger amount",default=1)
+p.add_argument("-x", "--width", help="Width", default=322)
+p.add_argument("-y", "--height", help="Height", default=322)
+p.add_argument("-r", "--rulenumber", help="Rule number", default=18)
+p.add_argument("-o", "--outputfile", help="Output file", default="out.png")
+p.add_argument("-s", "--scalefactor", help="Scale the output image by an interger amount", default=1)
 args = p.parse_args()
 
 width = int(args.width)
@@ -26,7 +26,7 @@ def generate_rule(rulenumber):
 		for middle in [False, True]:
 			for right in [False, True]:
 				rule[(left, middle, right)] = rulenumber%2 == 1
-				rulenumber /= 2
+				rulenumber //= 2
 	return rule
 
 # Generates a 2d representation of the state of the automaton at each generation
@@ -55,8 +55,8 @@ new = Image.new('RGB', [width, height])
 print("Placing pixels...")
 for y in range(height):
 	for x in range(width):
-		new.putpixel((x, y), true_pixel if ca[y/scalefactor][x/scalefactor] else false_pixel)
+		new.putpixel((x, y), true_pixel if ca[int(y/scalefactor)][int(x/scalefactor)] else false_pixel)
 
 print("Saving image...")
 new.save(args.outputfile)
-print "Done!"
+print("Done!")
