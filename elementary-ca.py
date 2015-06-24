@@ -1,7 +1,7 @@
 try:
-	import Image, ImageFilter
+	import Image
 except ImportError:
-	from PIL import Image, ImageFilter
+	from PIL import Image
 import random
 import argparse
 
